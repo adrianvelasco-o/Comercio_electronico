@@ -7,11 +7,12 @@ public class PayPal implements Pago {
 
     @Override
     public boolean procesarPago(double monto){
-        return false;
+        System.out.println("Procesando pago con PayPal: " + correoUsuario);
+        return true;
     }
 
     @Override
     public String generarRecibo(){
-        return "";
+        return "Pago realizado con PayPal desde " + correoUsuario;
     }
 }
