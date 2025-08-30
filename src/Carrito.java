@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Carrito {
-    private List productos;
+    private List<Producto> productos = new ArrayList<>();
 
-    public Carrito(){
-        productos = new ArrayList<>();
-    }
+    // public Carrito(){
+    //     productos = new ArrayList<>();
+    // }
 
     public void agregarProductos(Producto producto){
         productos.add(producto);
@@ -21,8 +21,8 @@ public class Carrito {
     }
 
     public void obtenerProductos(){
-        for(Producto producto : productos){
-            System.out.print(producto.nombre);
+        for(Producto p : productos){
+            System.out.print(p);
         }
     }
 

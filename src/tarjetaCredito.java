@@ -1,10 +1,10 @@
-public class tarjetaCredito implements Pago{
+public class TarjetaCredito implements Pago {
     
     private String numeroTarjeta;
     private String nombreTitular;
     private String fechaExpiracion;
 
-    public tarjetaCredito(String numeroTarjeta, String nombreTitular, String fechaExpiracion){
+    public TarjetaCredito(String numeroTarjeta, String nombreTitular, String fechaExpiracion){
         this.numeroTarjeta = numeroTarjeta;
         this.nombreTitular = nombreTitular;
         this.fechaExpiracion = fechaExpiracion;

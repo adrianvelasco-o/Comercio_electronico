@@ -1,7 +1,7 @@
-public class payPal implements Pago {
+public class PayPal implements Pago {
     private String correoUsuario;
 
-    public payPal(String correoUsuario){
+    public PayPal(String correoUsuario){
         this.correoUsuario = correoUsuario;
     }
 
