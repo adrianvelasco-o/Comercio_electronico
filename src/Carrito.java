@@ -4,50 +4,50 @@ import java.util.List;
 public class Carrito {
     private int idCarrito;
     private List<Producto> productos = new ArrayList<>();
+    
+    // Delegación de responsabilidades a clases especializadas
+    private CalculadoraCarrito calculadora;
+    private GestorInventario gestorInventario;
+    private VisualizadorCarrito visualizador;
 
     public Carrito(int idCarrito){
         this.idCarrito = idCarrito;
-        productos = new ArrayList<>();
+        this.productos = new ArrayList<>();
+        
+        // Inicializar las clases especializadas
+        this.calculadora = new CalculadoraCarrito();
+        this.gestorInventario = new GestorInventario();
+        this.visualizador = new VisualizadorCarrito();
     }
 
+    //RESPONSABILIDAD ÚNICA GESTIÓN DEL CARRITO 
+    
     public int obtenerIdCarrito(){
         return this.idCarrito;
     }
 
     public void agregarProductos(Producto producto){
-        if (producto.obtenerStock() > 0) {
+        if (gestorInventario.hayStockDisponible(producto, 1)) {
             productos.add(producto);
-            producto.modificarStock(1);
+            gestorInventario.reducirStock(producto, 1);
+            visualizador.mostrarExito("Producto agregado al carrito: " + producto.obtenerNombre());
         } else {
-            System.out.println("No hay stock disponible para: " + producto.obtenerNombre());
+            visualizador.mostrarError("No hay stock disponible para: " + producto.obtenerNombre());
         }
     }
 
     public void eliminarProducto(Producto producto){
         if (productos.contains(producto)) {
             productos.remove(producto);
-            producto.modificarStock(-1);
+            gestorInventario.restaurarStock(producto, 1);
+            visualizador.mostrarExito("Producto eliminado del carrito: " + producto.obtenerNombre());
         } else {
-            System.out.println("El producto no está en el carrito");
+            visualizador.mostrarError("El producto no está en el carrito");
         }
     }
 
     public List<Producto> obtenerProductos(){
         return new ArrayList<>(productos);
-    }
-
-    public double calcularSubtotal(){
-        double subtotal = 0.0;
-        for(Producto p : productos){
-            subtotal += p.subtotal();
-        }
-        return subtotal;
-    }
-
-    public void mostrarProductos(){
-        for(Producto p : productos){
-            System.out.println(p.obtenerNombre() + " - Precio: $" + p.obtenerPrecio() + " - Subtotal: $" + p.subtotal());
-        }
     }
 
     public int obtenerCantidadProductos(){
@@ -56,8 +56,41 @@ public class Carrito {
 
     public void limpiarCarrito(){
         for(Producto p : productos){
-            p.modificarStock(-1);
+            gestorInventario.restaurarStock(p, 1);
         }
         productos.clear();
+        visualizador.mostrarExito("Carrito limpiado completamente");
+    }
+    
+    public boolean estaVacio(){
+        return productos.isEmpty();
+    }
+    
+    public boolean contieneProducto(Producto producto){
+        return productos.contains(producto);
+    }
+    
+    // ASIGNACION DE RESPONSABILIDADES
+    
+    public double calcularSubtotal(){
+        return calculadora.calcularSubtotal(productos);
+    }
+    
+    public double calcularTotalConImpuestos(double porcentajeImpuesto){
+        return calculadora.calcularTotalConImpuestos(productos, porcentajeImpuesto);
+    }
+    
+    public void mostrarProductos(){
+        visualizador.mostrarProductos(productos);
+    }
+    
+    public void mostrarResumen(){
+        double subtotal = calcularSubtotal();
+        visualizador.mostrarResumen(productos, subtotal);
+    }
+    
+    public String generarReporte(){
+        double subtotal = calcularSubtotal();
+        return visualizador.generarReporte(productos, subtotal);
     }
 }
