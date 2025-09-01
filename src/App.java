@@ -13,12 +13,12 @@ public class App {
         Producto mousePad = new Producto(6, "Computador de mesa", 20, 10, 0);
         Producto baseRefrigerante = new Producto(7, "Computador de mesa", 250, 10, 0);
 
-        int opcion = 20;
+        int opcion = 3;
         while (opcion != 0) {
             System.out.println("Seleccione una opción:");
             System.out.println("1. Agregar producto");
             System.out.println("2. Ver productos");
-            System.out.println("20. Salir");
+            System.out.println("0. Salir");
             opcion = entrada.nextInt();
 
             switch (opcion) {
