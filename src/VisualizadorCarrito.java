@@ -2,7 +2,6 @@ import java.util.List;
 
 public class VisualizadorCarrito {
     
-   
     public void mostrarProductos(List<Producto> productos) {
         if (productos.isEmpty()) {
             System.out.println("El carrito está vacío");
@@ -12,7 +11,7 @@ public class VisualizadorCarrito {
         System.out.println("PRODUCTOS EN EL CARRITO");
         for(int i = 0; i < productos.size(); i++) {
             Producto p = productos.get(i);
-                System.out.println((i + 1) + ". " + p.obtenerNombre() + " - Precio: $" + p.obtenerPrecio() + " - Subtotal: $" + p.subtotal());
+                System.out.println((i + 1) + ". " + p.obtenerNombre() + " - Precio: $" + p.obtenerPrecio());
         }
         
     }
