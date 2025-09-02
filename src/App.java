@@ -37,12 +37,11 @@ public class App {
         }
 
 //++++++++++++++++++++++++++++++++++++++++++
-// FORMA DE PAGO (PAYPAL O TARJETA DE CREDITO)    
+// FORMA DE PAGO (PAYPAL O TARJETA DE CREDITO) ...   
 //+++++++++++++++++++++++++++++++++++++++++++
 
         payPal pagoPayPal= new payPal();
         tarjetaCredito pagoTarjeta= new tarjetaCredito();
-
 
         int opcionPago = 20;
         while (opcionPago != 0) {
