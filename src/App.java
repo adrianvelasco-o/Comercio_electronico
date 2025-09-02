@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class App {
     public static void main(String[] args) {
         // Crear productos
         Producto pc = new Producto(1, "Computador de mesa", 1000, 10, 1);
