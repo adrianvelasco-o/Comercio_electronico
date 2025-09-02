@@ -37,7 +37,7 @@ public class App {
         }
 
 //++++++++++++++++++++++++++++++++++++++++++
-// FORMA DE PAGO (PAYPAL O TARJETA DE CREDITO) ...   
+// FORMA DE PAGO (PAYPAL O TARJETA DE CREDITO) 
 //+++++++++++++++++++++++++++++++++++++++++++
 
         payPal pagoPayPal= new payPal();
@@ -58,20 +58,19 @@ public class App {
                     pagoPayPal.setCorreoUsuario(correo);
                     pagoPayPal.procesarPago();
                     pagoPayPal.generarRecibo();
-                    
-                    break;
+                break;
                 case 2:
-                        String numeroTarjeta=entrada.nextLine();
-                        String nombreTitular=entrada.nextLine();
-                        String fechaExpiracion=entrada.nextLine();
+                    String numeroTarjeta=entrada.nextLine();
+                    String nombreTitular=entrada.nextLine();
+                    String fechaExpiracion=entrada.nextLine();
 
-                        pagoTarjeta.setNumeroTarjeta(numeroTarjeta);
-                        pagoTarjeta.setNombreTitular(nombreTitular);
-                        pagoTarjeta.setFechaExpiracion(fechaExpiracion);
-                        pagoTarjeta.procesarPago();
-                        pagoTarjeta.generarRecibo();
+                    pagoTarjeta.setNumeroTarjeta(numeroTarjeta);
+                    pagoTarjeta.setNombreTitular(nombreTitular);
+                    pagoTarjeta.setFechaExpiracion(fechaExpiracion);
+                    pagoTarjeta.procesarPago();
+                    pagoTarjeta.generarRecibo();
 
-                    break;
+                break;
                 case 3:
                     System.out.println("HAS SALIDO DEL SISTEMA");
                     break;
