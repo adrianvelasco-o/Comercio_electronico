@@ -4,25 +4,21 @@ import java.util.List;
 public class Carrito {
     private int idCarrito;
     private List<Producto> productos = new ArrayList<>();
-    
-    // Delegación de responsabilidades a clases especializadas
-    private CalculadoraCarrito calculadora;
-    private GestorInventario gestorInventario;
-    private VisualizadorCarrito visualizador;
+
+    private CalculadoraCarrito calculadora;     // Delegación de responsabilidades a clases especializadas
+    private GestorInventario gestorInventario;    // Delegación de responsabilidades a clases especializadas
+    private VisualizadorCarrito visualizador;    // Delegación de responsabilidades a clases especializadas
 
     public Carrito(int idCarrito){
         this.idCarrito = idCarrito;
         this.productos = new ArrayList<>();
         
-        // Inicializar las clases especializadas
-        this.calculadora = new CalculadoraCarrito();
-        this.gestorInventario = new GestorInventario();
-        this.visualizador = new VisualizadorCarrito();
+        this.calculadora = new CalculadoraCarrito(); // Inicializar las clases especializadas
+        this.gestorInventario = new GestorInventario(); // Inicializar las clases especializadas
+        this.visualizador = new VisualizadorCarrito(); // Inicializar las clases especializadas
     }
-
-    //RESPONSABILIDAD ÚNICA GESTIÓN DEL CARRITO 
     
-    public int obtenerIdCarrito(){
+    public int obtenerIdCarrito(){  //RESPONSABILIDAD ÚNICA GESTIÓN DEL CARRITO 
         return this.idCarrito;
     }
 
