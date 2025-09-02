@@ -13,14 +13,13 @@ public class TarjetaCredito implements Pago {
         this.nombreTitular = nombreTitular;
         this.fechaExpiracion = fechaExpiracion;
         this.pedido = pedido;
-        // El monto total se calcula a partir del objeto Pedido.
+        // El monto total se calcula a partir del objeto pedido
         this.monto = pedido.calcularTotal();
     }
 
     @Override
     public boolean procesarPago() {
         System.out.println("Procesando pago con tarjeta de crédito: " + numeroTarjeta);
-        // Aquí podrías añadir lógica más compleja para validar la tarjeta.
         return true;
     }
 
@@ -34,7 +33,7 @@ public class TarjetaCredito implements Pago {
                "Monto Total: $" + String.format("%.2f", monto) + "\n" +
                "Estado: Pagado";
     }
-    //+++++++++++++++++++ Getter and Getter++++++++++++++
+    //Getter and Getter
     public String getNumeroTarjeta() {
         return numeroTarjeta;
     }
