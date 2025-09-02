@@ -1,10 +1,10 @@
-public class payPal implements Pago {
+public class PayPal implements Pago {
     private String correoUsuario;
     private double monto;
     private Pedido pedido;
     
-    public payPal() {}
-    public payPal(String correoUsuario, Pedido pedido) {
+    public PayPal() {}
+    public PayPal(String correoUsuario, Pedido pedido) {
         this.correoUsuario = correoUsuario;
         this.pedido = pedido;
         this.monto = pedido.calcularTotal();

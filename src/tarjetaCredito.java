@@ -1,4 +1,4 @@
-public class tarjetaCredito implements Pago {
+public class TarjetaCredito implements Pago {
 
     private String numeroTarjeta;
     private String nombreTitular;
@@ -6,9 +6,9 @@ public class tarjetaCredito implements Pago {
     private double monto;
     private Pedido pedido;
 
-    public tarjetaCredito() {}
+    public TarjetaCredito() {}
 
-    public tarjetaCredito(String numeroTarjeta, String nombreTitular, String fechaExpiracion, Pedido pedido) {
+    public TarjetaCredito(String numeroTarjeta, String nombreTitular, String fechaExpiracion, Pedido pedido) {
         this.numeroTarjeta = numeroTarjeta;
         this.nombreTitular = nombreTitular;
         this.fechaExpiracion = fechaExpiracion;
