@@ -1,4 +1,4 @@
 public interface Pago {
-    public boolean procesarPago(double monto);
+    public boolean procesarPago();
     public String generarRecibo();
 }
