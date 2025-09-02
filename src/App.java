@@ -1,13 +1,11 @@
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-     Scanner entrada = new Scanner(System.in);
+        Scanner entrada = new Scanner(System.in);
         Carrito carrito= new Carrito(1);
-//+++++++++++++++++++++++++++++++++++++++++++
+
         Producto pc = new Producto(1, "Computador de mesa", 1000, 10, 0);
         Producto Portatil = new Producto(2, "Portatil", 500, 10, 0);
         Producto monitor = new Producto(3, "Monitor", 200, 10, 0);
@@ -21,7 +19,7 @@ public class App {
             System.out.println("Seleccione una opción:");
             System.out.println("1. Agregar producto al carrito");
             System.out.println("2. Ver productos en el carrito");
-             System.out.println("3. Procesar pago");
+            System.out.println("3. Procesar pago");
             System.out.println("0. Salir");
             opcion = entrada.nextInt();
 
@@ -110,7 +108,7 @@ public class App {
                             System.out.println("Opción no válida");
                     }
                     
-                    break;    
+                    break;
                 case 0:
                     // Salir
                     System.out.println("*****FINALIZADO******");
