@@ -89,4 +89,8 @@ public class Carrito {
         double subtotal = calcularSubtotal();
         return visualizador.generarReporte(productos, subtotal);
     }
+
+    public void vaciarCarrito(){
+        productos.clear();
+    }
 }

@@ -88,6 +88,9 @@ public class App {
                             pagoPayPal.setMonto(carrito.calcularTotalConImpuestos(0.19));
                             pagoPayPal.procesarPago();
                             System.out.println(pagoPayPal.generarRecibo());
+                            // Modificar el stock
+
+                            carrito.vaciarCarrito();
                             break;
                         case 2:
                             System.out.println("Ingrese el número de tarjeta:");
@@ -103,6 +106,8 @@ public class App {
                             pagoTarjeta.setMonto(carrito.calcularTotalConImpuestos(0.19));
                             pagoTarjeta.procesarPago();
                             System.out.println(pagoTarjeta.generarRecibo());
+                            // Modificar el stock
+                            carrito.vaciarCarrito();
                             break;
                         default:
                             System.out.println("Opción no válida");
