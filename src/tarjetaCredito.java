@@ -4,11 +4,11 @@ public class tarjetaCredito implements Pago {
     private String nombreTitular;
     private String fechaExpiracion;
     private double monto;
-    private pedido pedido;
+    private Pedido pedido;
 
     public tarjetaCredito() {}
 
-    public tarjetaCredito(String numeroTarjeta, String nombreTitular, String fechaExpiracion, pedido pedido) {
+    public tarjetaCredito(String numeroTarjeta, String nombreTitular, String fechaExpiracion, Pedido pedido) {
         this.numeroTarjeta = numeroTarjeta;
         this.nombreTitular = nombreTitular;
         this.fechaExpiracion = fechaExpiracion;
@@ -67,11 +67,11 @@ public class tarjetaCredito implements Pago {
         this.monto = monto;
     }
 
-    public pedido getPedido() {
+    public Pedido getPedido() {
         return pedido;
     }
 
-    public void setPedido(pedido pedido) {
+    public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
  

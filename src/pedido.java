@@ -1,8 +1,8 @@
-public class pedido {
+public class Pedido {
 
     private Producto producto;
     private double impuesto;
-    public pedido(Producto producto){
+    public Pedido(Producto producto){
         this.producto = producto;
         this.impuesto = 0.19;
     }
