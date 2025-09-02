@@ -23,7 +23,7 @@ public class PayPal implements Pago {
         return "Pago realizado con PayPal desde: " + correoUsuario + 
                "\nValor: $" + monto;
     }
-     // Getter and Getter
+     // Getter and Setter
     public String getCorreoUsuario() {
         return correoUsuario;
     }
