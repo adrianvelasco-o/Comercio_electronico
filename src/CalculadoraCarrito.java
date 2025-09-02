@@ -1,5 +1,4 @@
 import java.util.List;
-
 public class CalculadoraCarrito {
     
     
@@ -11,17 +10,14 @@ public class CalculadoraCarrito {
         return subtotal;
     }
     
-   
     public double calcularTotalConImpuestos(List<Producto> productos, double porcentajeImpuesto) {
         double subtotal = calcularSubtotal(productos);
         return subtotal + (subtotal * porcentajeImpuesto);
     }
     
-   
     public double calcularDescuento(double subtotal, double porcentajeDescuento) {
         return subtotal * porcentajeDescuento;
     }
-    
     
     public double calcularTotalConDescuento(double subtotal, double descuento) {
         return subtotal - descuento;
