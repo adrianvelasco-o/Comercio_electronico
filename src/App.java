@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class App {
@@ -8,6 +7,7 @@ public class App {
             System.out.println();
         }
     }
+
     public static void esperarEnter() {
         System.out.println("\nPresiona ENTER para continuar...");
         try {
@@ -16,21 +16,22 @@ public class App {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) {
 
         Scanner entrada = new Scanner(System.in);
         Carrito carrito = new Carrito(1);
 
-        Producto pc = new Producto(1, "Computador de mesa", 1000, 10, 0);
-        Producto Portatil = new Producto(2, "Portatil", 500, 10, 0);
-        Producto monitor = new Producto(3, "Monitor", 200, 10, 0);
-        Producto teclado = new Producto(4, "Teclado", 100, 10, 0);
-        Producto mouse = new Producto(5, "Mouse", 50, 10, 0);
-        Producto mousePad = new Producto(6, "Mouse Pad", 20, 10, 0);
-        Producto baseRefrigerante = new Producto(7, "Base Refrigerante", 250, 10, 0);
+        Producto pc = new Producto(1, "Computador de mesa", 1000, 10);
+        Producto Portatil = new Producto(2, "Portatil", 500, 10);
+        Producto monitor = new Producto(3, "Monitor", 200, 10);
+        Producto teclado = new Producto(4, "Teclado", 100, 10);
+        Producto mouse = new Producto(5, "Mouse", 50, 10);
+        Producto mousePad = new Producto(6, "Mouse Pad", 20, 10);
+        Producto baseRefrigerante = new Producto(7, "Base Refrigerante", 250, 10);
 
         int opcion = 3;
-        
+
         while (opcion != 0) {
             limpiarPantalla();
             System.out.println("--- MENÚ PRINCIPAL ---");
@@ -40,7 +41,7 @@ public class App {
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = entrada.nextInt();
-            entrada.nextLine(); 
+            entrada.nextLine();
 
             switch (opcion) {
                 case 1:
@@ -55,29 +56,33 @@ public class App {
                     System.out.println("7. Base Refrigerante");
                     System.out.print("Ingrese el número del producto: ");
                     int productoSeleccionado = entrada.nextInt();
-                    entrada.nextLine(); 
+                    entrada.nextLine();
+                    
+                    System.out.print("Ingrese la cantidad: ");
+                    int cantidad = entrada.nextInt();
+                    entrada.nextLine();
 
                     switch (productoSeleccionado) {
                         case 1:
-                            carrito.agregarProductos(pc);
+                            carrito.agregarProductos(pc, cantidad);
                             break;
                         case 2:
-                            carrito.agregarProductos(Portatil);
+                            carrito.agregarProductos(Portatil, cantidad);
                             break;
                         case 3:
-                            carrito.agregarProductos(monitor);
+                            carrito.agregarProductos(monitor, cantidad);
                             break;
                         case 4:
-                            carrito.agregarProductos(teclado);
+                            carrito.agregarProductos(teclado, cantidad);
                             break;
                         case 5:
-                            carrito.agregarProductos(mouse);
+                            carrito.agregarProductos(mouse, cantidad);
                             break;
                         case 6:
-                            carrito.agregarProductos(mousePad);
+                            carrito.agregarProductos(mousePad, cantidad);
                             break;
                         case 7:
-                            carrito.agregarProductos(baseRefrigerante);
+                            carrito.agregarProductos(baseRefrigerante, cantidad);
                             break;
                         default:
                             System.out.println("\n¡Opción de producto no válida!");
@@ -88,17 +93,22 @@ public class App {
                 case 2:
                     limpiarPantalla();
                     carrito.mostrarProductos();
+                    System.out.println("\nSubtotal del carrito: $" + String.format("%.2f", carrito.calcularSubtotal()));
                     esperarEnter();
                     break;
 
                 case 3:
                     limpiarPantalla();
                     System.out.println("--- PROCESAR PAGO ---");
-                    if (carrito.obtenerCantidadProductos() == 0) {
+                    if (carrito.obtenerArticulos().isEmpty()) {
                         System.out.println("El carrito está vacío. Agregue productos para procesar el pago.");
                         esperarEnter();
                         break;
                     }
+                    
+                    Pedido pedido = new Pedido(carrito);
+                    double totalPagar = pedido.calcularTotal();
+                    System.out.println("Total a pagar (incluye impuestos): $" + String.format("%.2f", totalPagar));
                     
                     System.out.println("Seleccione el método de pago:");
                     System.out.println("1. PayPal");
@@ -107,36 +117,31 @@ public class App {
                     int metodoPago = entrada.nextInt();
                     entrada.nextLine();
 
-                    if (!carrito.obtenerProductos().isEmpty()) {
-                        Producto productoParaPedido = carrito.obtenerProductos().get(0);
-                        Pedido pedido = new Pedido(productoParaPedido);
-
-                        System.out.println("Total del pedido: $" + pedido.calcularTotal());
-
-                        switch (metodoPago) {
-                            case 1:
-                                System.out.print("Ingrese su correo de PayPal: ");
-                                String correo = entrada.nextLine();
-                                PayPal pagoPayPal = new PayPal(correo, pedido); 
-                                pagoPayPal.procesarPago();
+                    switch (metodoPago) {
+                        case 1:
+                            System.out.print("Ingrese su correo de PayPal: ");
+                            String correo = entrada.nextLine();
+                            PayPal pagoPayPal = new PayPal(correo, pedido); 
+                            if(pagoPayPal.procesarPago()){
                                 System.out.println(pagoPayPal.generarRecibo());
                                 carrito.limpiarCarrito();
-                                break;
-                            case 2:
-                                System.out.print("Ingrese el número de tarjeta: ");
-                                String numeroTarjeta = entrada.nextLine();
-                                System.out.print("Ingrese el nombre del titular: ");
-                                String nombreTitular = entrada.nextLine();
-                                System.out.print("Ingrese la fecha de expiración (MM/YY): ");
-                                String fechaExpiracion = entrada.nextLine();
-                                TarjetaCredito pagoTarjeta = new TarjetaCredito(numeroTarjeta, nombreTitular, fechaExpiracion, pedido);
-                                pagoTarjeta.procesarPago();
+                            }
+                            break;
+                        case 2:
+                            System.out.print("Ingrese el número de tarjeta: ");
+                            String numeroTarjeta = entrada.nextLine();
+                            System.out.print("Ingrese el nombre del titular: ");
+                            String nombreTitular = entrada.nextLine();
+                            System.out.print("Ingrese la fecha de expiración (MM/YY): ");
+                            String fechaExpiracion = entrada.nextLine();
+                            TarjetaCredito pagoTarjeta = new TarjetaCredito(numeroTarjeta, nombreTitular, fechaExpiracion, pedido);
+                            if(pagoTarjeta.procesarPago()){
                                 System.out.println(pagoTarjeta.generarRecibo());
                                 carrito.limpiarCarrito();
-                                break;
-                            default:
-                                System.out.println("\n¡Opción de pago no válida!");
-                        }
+                            }
+                            break;
+                        default:
+                            System.out.println("\n¡Opción de pago no válida!");
                     }
                     
                     esperarEnter();

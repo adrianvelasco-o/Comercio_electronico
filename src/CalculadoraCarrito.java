@@ -1,25 +1,15 @@
 import java.util.List;
 public class CalculadoraCarrito {
-    
-    
-    public double calcularSubtotal(List<Producto> productos) {
+    public double calcularSubtotal(List<ArticuloCarrito> articulos) {
         double subtotal = 0.0;
-        for(Producto p : productos) {
-            subtotal += p.subtotal();
+        for (ArticuloCarrito articulo : articulos) {
+            subtotal += articulo.getSubtotal();
         }
         return subtotal;
     }
     
-    public double calcularTotalConImpuestos(List<Producto> productos, double porcentajeImpuesto) {
-        double subtotal = calcularSubtotal(productos);
+    public double calcularTotalConImpuestos(List<ArticuloCarrito> articulos, double porcentajeImpuesto) {
+        double subtotal = calcularSubtotal(articulos);
         return subtotal + (subtotal * porcentajeImpuesto);
-    }
-    
-    public double calcularDescuento(double subtotal, double porcentajeDescuento) {
-        return subtotal * porcentajeDescuento;
-    }
-    
-    public double calcularTotalConDescuento(double subtotal, double descuento) {
-        return subtotal - descuento;
     }
 }

@@ -1,13 +1,14 @@
 public class Pedido {
-
-    private Producto producto;
+    private Carrito carrito;
     private double impuesto;
-    public Pedido(Producto producto){
-        this.producto = producto;
+    
+    public Pedido(Carrito carrito) {
+        this.carrito = carrito;
         this.impuesto = 0.19;
     }
 
-    public double calcularTotal(){
-        return producto.subtotal() + (producto.subtotal() * impuesto);
+    public double calcularTotal() {
+        double subtotal = carrito.calcularSubtotal();
+        return subtotal + (subtotal * impuesto);
     }
 }
